@@ -1,0 +1,28 @@
+@* SafeVault/src/SafeVault.Web/Views/Notes/Index.cshtml *@
+@model SafeVault.Web.Models.NoteListViewModel
+
+<h2>My Notes</h2>
+
+<form method="get" action="/notes">
+    <input name="term" value="@Model.Term" placeholder="Search notes" />
+    <button type="submit">Search</button>
+    <a href="/notes/create">Create</a>
+</form>
+
+@if (Model.Notes.Count == 0)
+{
+    <p>No notes found.</p>
+}
+else
+{
+    <ul>
+    @foreach (var n in Model.Notes)
+    {
+        <li>
+            <a href="/notes/@n.NoteId">@n.Title</a>
+            <div>@n.ContentPreview</div>
+            <small>@n.CreatedUtc.ToString("u")</small>
+        </li>
+    }
+    </ul>
+}

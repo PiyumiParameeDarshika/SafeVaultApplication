@@ -1,0 +1,38 @@
+@* SafeVault/src/SafeVault.Web/Views/Account/Login.cshtml *@
+@model SafeVault.Web.Models.LoginModel
+
+<h2>Login</h2>
+
+<form method="post" asp-action="Login" asp-controller="Account">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="ReturnUrl" />
+
+    <div>
+        <label asp-for="Username"></label>
+        <input asp-for="Username" />
+        <span asp-validation-for="Username"></span>
+    </div>
+
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+
+    <div>
+        <input asp-for="RememberMe" />
+        <label asp-for="RememberMe">Remember me</label>
+    </div>
+
+    <button type="submit">Login</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div>
+        @foreach (var err in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@err.ErrorMessage</p>
+        }
+    </div>
+}

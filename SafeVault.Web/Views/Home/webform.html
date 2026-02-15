@@ -1,0 +1,11 @@
+<!-- SafeVault/src/SafeVault.Web/Views/Home/webform.html -->
+<form action="/submit" method="post" autocomplete="off" novalidate>
+    <!-- If you use MVC with Razor, prefer Html.AntiForgeryToken() -->
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" maxlength="30" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" maxlength="320" required>
+
+    <button type="submit">Submit</button>
+</form>

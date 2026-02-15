@@ -1,0 +1,14 @@
+@* SafeVault/src/SafeVault.Web/Views/Notes/Details.cshtml *@
+@model SafeVault.Web.Models.NoteDetailsViewModel
+
+<h2>@Model.Title</h2>
+<small>@Model.CreatedUtc.ToString("u")</small>
+
+<hr />
+
+@* XSS FIX:
+   Do NOT use Html.Raw(Model.Content).
+   Razor will HTML-encode by default, so <script> becomes harmless text. *@
+<pre>@Model.Content</pre>
+
+<p><a href="/notes">Back</a></p>
